@@ -24,6 +24,8 @@ public class FHBGame extends Application {
    Stage fhbStage; //the main stage
    ArrayList<Character> characters; // arraylist of characters existing
    Sprite x;
+   ArrayList<ImageView> images;
+
  /**
   * default Constructor
   */
@@ -39,8 +41,18 @@ public class FHBGame extends Application {
   public void update() {
     t+= .01666;
     this.getCharacters().forEach(c-> {
-       c.build();
+       if (c != null) { 
+   	//images.remove()
+   	} //if
     });
+
+    for (int i = 0; i< images.size(); i++) {
+	if (images.get(i) != null) {
+		group.getChildren().remove(images.get(i));
+	}//if
+	images.set(i, x.cycle());
+	group.getChildren().add(images.get(i));
+    }//for
   }
 
 
@@ -52,6 +64,8 @@ public class FHBGame extends Application {
       Image[] img = new Image[1]; 
       img[0] = new Image("https://m.media-amazon.com/images/M/MV5BMTQ5NTUzNDE5OV5BMl5BanBnXkFtZTgwMjAwOTE1MDE@._V1_.jpg", 150, 150, false, false);
       x = new Sprite(100,100,img,img,img);
+      
+      
    }//setUp
 
  /**
