@@ -79,14 +79,14 @@ public class FHBGame extends Application {
 	   inner = new ArrayList<Rectangle>();
 	   for (int i = 0; i < 8; i++) {
 	        for (int j = 0; j < 8; j++) {
-	        	recs.add(new Rectangle(80 * i, 80 * j, 79, 79));
-	        	inner.add(new Rectangle(80 * (i + 20), 80 * (j + 20), 39, 39));
+	        	recs.add(new Rectangle(80 * i, 80 * j + 1, 79, 79));
+	        	inner.add(new Rectangle(80 * i + 20, 80 * j + 21, 39, 39));
 	        	recs.get((i * 8) + j).setStroke(Color.BLACK);
 	        	recs.get((i * 8) + j).setFill(Color.web("F7F7F7"));
 	        	inner.get((i * 8) + j).setStroke(Color.BLACK);
-	        	inner.get((i * 8) + j).setFill(Color.RED);
+	        	inner.get((i * 8) + j).setFill(Color.web("FFB3B3")); //FFB3B3 red //98E698 green
+				group.getChildren().add(recs.get((i * 8) + j));
 	        	group.getChildren().add(inner.get((i * 8) + j));
-			group.getChildren().add(recs.get((i * 8) + j));
 	        }//for
 	   }//for
    } //setUp
