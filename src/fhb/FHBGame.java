@@ -85,7 +85,8 @@ public class FHBGame extends Application {
 	        	recs.get((i * 8) + j).setFill(Color.web("F7F7F7"));
 	        	inner.get((i * 8) + j).setStroke(Color.BLACK);
 	        	inner.get((i * 8) + j).setFill(Color.RED);
-	        	group.getChildren().addAll(inner.get((i * 8) + j), recs.get((i * 8) + j));
+	        	group.getChildren().add(inner.get((i * 8) + j));
+			group.getChildren().add(recs.get((i * 8) + j));
 	        }//for
 	   }//for
    } //setUp
