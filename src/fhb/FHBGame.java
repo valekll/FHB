@@ -1,12 +1,25 @@
 package fhb;
 
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.util.ArrayList;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.KeyEvent;
+import javafx.animation.AnimationTimer;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class FHBGame extends Application {
 
    int money; //player money
    Group group; //main group
    double t; //keep track of time
    Stage fhbStage; //the main stage
-   ArrayList<Character>();
+   ArrayList<Character>() characters; // arraylist of characters existing
 
  /**
   * default Constructor
@@ -14,11 +27,24 @@ public class FHBGame extends Application {
    public FHBGame() {
    }//constructor
 
+  public List<Character> getCharacters() {
+     return group.getCharacters().stream()
+                                 .map(node->(Character)node)
+				 .collect(Collectors.toList());
+  }//getcharacters
+
+  public void update() {
+    t+= .01666;
+    
+  }
+
+
  /**
  * sets up the nodes and adds them to the group
  */
    public void setUp() {
-      
+      characters = new ArrayList<Character>();
+      Sprite x = new Sprite(100,100,);
    }//setUp
 
  /**
@@ -33,7 +59,6 @@ public class FHBGame extends Application {
       stage.setScene(scene);
       stage.sizeToScene();
       stage.show();
-
    }//start
 
   /**
@@ -51,5 +76,4 @@ public class FHBGame extends Application {
          System.exit(1);
       } // try
    } // main
-
 }//fhbgame
