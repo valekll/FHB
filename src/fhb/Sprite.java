@@ -21,6 +21,9 @@ public class Sprite extends Node {
 		xax = x;
 		yax = y;
 		nml = normal;
+		if(normal.length == 0 || build.length == 0 || death.length == 0) {
+			System.out.println("Constructor error");
+		}
 		nmlv = imageToImageViewArr(nml);
 		bd = build;
 		bdv = imageToImageViewArr(bd);
@@ -35,8 +38,9 @@ public class Sprite extends Node {
 	 */
 	public static ImageView[] imageToImageViewArr(Image ... img) {
 		ImageView[] imgv = new ImageView[img.length];
-		for(int i = 0; i > img.length; i++) {
+		for(int i = 0; i < img.length; i++) {
 			imgv[i] = new ImageView(img[i]);
+			System.out.println("Adding Sprite Image: " + img[i]);
 		} //for
 		return imgv;
 	} //imageToImageViewArr()
@@ -51,6 +55,11 @@ public class Sprite extends Node {
 			nmlct = 0;
 		} //if
 		ImageView img = nmlv[nmlct];
+		if(img == null) {
+			System.out.println("returning nothing");
+			System.out.println("Count: " + nmlct + " Frames: " + nmlv.length);
+			System.out.println(nmlv[nmlct]);
+		}
 		return img;
 	} //cycle()
 	
