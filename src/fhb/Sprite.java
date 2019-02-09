@@ -4,11 +4,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Sprite {
-	private Image[] nml;
+	private double xax; //x and y axis
+	private double yax;
+	private Image[] nml; //normal
 	private ImageView[] nmlv;
-	private Image[] bd;
+	private Image[] bd; //build
 	private ImageView[] bdv;
-	private Image[] dth;
+	private Image[] dth; //death
 	private ImageView[] dthv;
 	
 	//TODO:

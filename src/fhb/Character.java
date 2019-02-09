@@ -4,5 +4,12 @@ public class Character {
 	private int hp;
 	private String dia;
 	private String name;
-	//add sprite sets here
-}
+	private Sprite sprite;
+	
+	public boolean decHp(int dmg) {
+		if(true) {
+			return true;
+		} //if
+		return false;
+	} //decHp()
+} //Character
