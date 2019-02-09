@@ -64,7 +64,7 @@ public class FHBGame extends Application {
       Image[] img = new Image[1]; 
       img[0] = new Image("https://m.media-amazon.com/images/M/MV5BMTQ5NTUzNDE5OV5BMl5BanBnXkFtZTgwMjAwOTE1MDE@._V1_.jpg", 150, 150, false, false);
       x = new Sprite(100,100,img,img,img);
-      
+      group.getChildren().add(x); 
       
    }//setUp
 
@@ -75,6 +75,11 @@ public class FHBGame extends Application {
    public void start(Stage stage) {
       group = new Group();
       setUp();
+      timer = new AnimationTimer() {
+         public void handle(long now) {
+            if(stage.isShowing()) {update();}
+	 }//handle
+      }//animationtimer
       Scene scene = new Scene(group, 880, 640, Color.BLACK);
       stage.setTitle("Farm. Hack. Build.");
       stage.setScene(scene);
