@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.input.KeyEvent;
 import javafx.animation.AnimationTimer;
 import java.util.List;
@@ -19,7 +20,7 @@ public class FHBGame extends Application {
    Group group; //main group
    double t; //keep track of time
    Stage fhbStage; //the main stage
-   ArrayList<Character>() characters; // arraylist of characters existing
+   ArrayList<Character> characters; // arraylist of characters existing
 
  /**
   * default Constructor
@@ -28,10 +29,10 @@ public class FHBGame extends Application {
    }//constructor
 
   public List<Character> getCharacters() {
-     return group.getCharacters().stream()
+     return group.getChildren().stream()
                                  .map(node->(Character)node)
 				 .collect(Collectors.toList());
-  }//getcharacters
+  } //getCharacters()
 
   public void update() {
     t+= .01666;
