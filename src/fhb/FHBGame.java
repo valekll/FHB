@@ -15,6 +15,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.animation.AnimationTimer;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.scene.shape.StrokeType;
+import javafx.scene.shape.Rectangle;
 
 public class FHBGame extends Application {
    AnimationTimer timer;
@@ -25,7 +27,7 @@ public class FHBGame extends Application {
    ArrayList<Sprite> sprites; // arraylist of characters existing
    Sprite x;
    ArrayList<ImageView> images;
-
+   ArrayList<Rectangle> recs;
  /**
   * default Constructor
   */
@@ -41,7 +43,7 @@ public class FHBGame extends Application {
   public void update() {
     t += .01666;
     this.getSprites().forEach(s-> {
-      
+         
     });
 
     for (int i = 0; i< images.size(); i++) {
@@ -68,8 +70,17 @@ public class FHBGame extends Application {
 	   sprites = new ArrayList<Sprite>();
 	   sprites.add(x);
 	   images = new ArrayList<ImageView>();
-	   images.add(sprites.get(0).cycle());      
+	   images.add(sprites.get(0).cycle());
 	   group.getChildren().add(images.get(0));
+	   //SQUARES
+	   recs = new ArrayList<Rectangle>();
+	   for (int i = 0; i < 8; i++) {
+	        for (int j = 0; j < 8; j++) {
+		   recs.add(new Rectangle(39+80*i,39+80*j,79,79));
+		   recs.get(i+j).setStroke(Color.BLACK);
+		   recs.get(i+j).setFill(Color.web("F7F7F7"));
+		}//for
+	   }//for
    } //setUp
 
  /**
