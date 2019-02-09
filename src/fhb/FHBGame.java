@@ -28,6 +28,8 @@ public class FHBGame extends Application {
    Sprite x;
    ArrayList<ImageView> images;
    ArrayList<Rectangle> recs;
+   ArrayList<Rectangle> inner;
+   
  /**
   * default Constructor
   */
@@ -42,9 +44,9 @@ public class FHBGame extends Application {
 
   public void update() {
     t += .01666;
-    this.getSprites().forEach(s-> {
+    /*this.getSprites().forEach(s-> {
          
-    });
+    });*/
 
     for (int i = 0; i< images.size(); i++) {
 	if (images.get(i) != null) {
@@ -60,12 +62,12 @@ public class FHBGame extends Application {
 
 
  /**
- * sets up the nodes and adds them to the group
- */
+  * sets up the nodes and adds them to the group
+  */
    public void setUp() {
 	   Image[] img = new Image[2]; 
-	   img[0] = new Image("https://m.media-amazon.com/images/M/MV5BMTQ5NTUzNDE5OV5BMl5BanBnXkFtZTgwMjAwOTE1MDE@._V1_.jpg", 150, 150, false, false);
-	   img[1] = new Image("https://pbs.twimg.com/media/DfzhghPX0AA4vHO.jpg", 150, 150, false, false);
+	   img[0] = new Image("https://m.media-amazon.com/images/M/MV5BMTQ5NTUzNDE5OV5BMl5BanBnXkFtZTgwMjAwOTE1MDE@._V1_.jpg", 160, 160, false, false);
+	   img[1] = new Image("https://pbs.twimg.com/media/DfzhghPX0AA4vHO.jpg", 160, 160, false, false);
 	   x = new Sprite(100,100,img,img,img);
 	   sprites = new ArrayList<Sprite>();
 	   sprites.add(x);
@@ -74,12 +76,17 @@ public class FHBGame extends Application {
 	   group.getChildren().add(images.get(0));
 	   //SQUARES
 	   recs = new ArrayList<Rectangle>();
+	   inner = new ArrayList<Rectangle>();
 	   for (int i = 0; i < 8; i++) {
 	        for (int j = 0; j < 8; j++) {
-		   recs.add(new Rectangle(39+80*i,39+80*j,79,79));
-		   recs.get(i+j).setStroke(Color.BLACK);
-		   recs.get(i+j).setFill(Color.web("F7F7F7"));
-		}//for
+	        	recs.add(new Rectangle(80 * i, 80 * j, 79, 79));
+	        	inner.add(new Rectangle(80 * (i + 20), 80 * (j + 20), 39, 39));
+	        	recs.get((i * 8) + j).setStroke(Color.BLACK);
+	        	recs.get((i * 8) + j).setFill(Color.web("F7F7F7"));
+	        	inner.get((i * 8) + j).setStroke(Color.BLACK);
+	        	inner.get((i * 8) + j).setFill(Color.RED);
+	        	group.getChildren().addAll(inner.get((i * 8) + j), recs.get((i * 8) + j));
+	        }//for
 	   }//for
    } //setUp
 
