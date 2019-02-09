@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import javafx.scene.input.KeyCode;
@@ -28,9 +30,9 @@ public class FHBGame extends Application {
    public FHBGame() {
    }//constructor
 
-  public List<Character> getCharacters() {
+  public List<Sprite> getCharacters() {
      return group.getChildren().stream()
-                                 .map(node->(Character)node)
+                                 .map(node->(Sprite)node)
 				 .collect(Collectors.toList());
   } //getCharacters()
 
@@ -38,7 +40,7 @@ public class FHBGame extends Application {
     t+= .01666;
     this.getCharacters().forEach(c-> {
        c.build();
-    };
+    });
   }
 
 
@@ -48,7 +50,7 @@ public class FHBGame extends Application {
    public void setUp() {
       characters = new ArrayList<Character>();
       Image[] img = new Image[1]; 
-      img[0] = new Image("attbuttondown.png");
+      img[0] = new Image("https://m.media-amazon.com/images/M/MV5BMTQ5NTUzNDE5OV5BMl5BanBnXkFtZTgwMjAwOTE1MDE@._V1_.jpg", 150, 150, false, false);
       x = new Sprite(100,100,img,img,img);
    }//setUp
 
@@ -59,7 +61,7 @@ public class FHBGame extends Application {
    public void start(Stage stage) {
       group = new Group();
       setUp();
-      Scene scene = new Scene(group, 640, 880, Color.BLACK);
+      Scene scene = new Scene(group, 880, 640, Color.BLACK);
       stage.setTitle("Farm. Hack. Build.");
       stage.setScene(scene);
       stage.sizeToScene();
