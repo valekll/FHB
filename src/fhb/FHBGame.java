@@ -21,7 +21,7 @@ public class FHBGame extends Application {
    double t; //keep track of time
    Stage fhbStage; //the main stage
    ArrayList<Character> characters; // arraylist of characters existing
-
+   Sprite x;
  /**
   * default Constructor
   */
@@ -36,7 +36,9 @@ public class FHBGame extends Application {
 
   public void update() {
     t+= .01666;
-    
+    this.getCharacters().forEach(c-> {
+       c.build();
+    };
   }
 
 
@@ -45,7 +47,9 @@ public class FHBGame extends Application {
  */
    public void setUp() {
       characters = new ArrayList<Character>();
-      Sprite x = new Sprite(100,100,);
+      Image[] img = new Image[1]; 
+      img[0] = new Image("attbuttondown.png");
+      x = new Sprite(100,100,img,img,img);
    }//setUp
 
  /**
@@ -56,7 +60,7 @@ public class FHBGame extends Application {
       group = new Group();
       setUp();
       Scene scene = new Scene(group, 640, 880, Color.BLACK);
-      stage.setTitle("Farm Hack Build");
+      stage.setTitle("Farm. Hack. Build.");
       stage.setScene(scene);
       stage.sizeToScene();
       stage.show();
