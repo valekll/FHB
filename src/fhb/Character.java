@@ -1,8 +1,8 @@
 package fhb;
 
 public class Character {
-	int hp;
-	String dia;
-	String name;
+	private int hp;
+	private String dia;
+	private String name;
 	//add sprite sets here
 }
