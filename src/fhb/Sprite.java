@@ -2,9 +2,8 @@ package fhb;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.Node;
 
-public class Sprite extends Node {
+public class Sprite {
 	private double xax; //x and y axis
 	private double yax;
 	private Image[] nml; //normal
