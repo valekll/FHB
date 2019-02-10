@@ -19,6 +19,8 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.shape.Rectangle;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
+
 
 public class FHBGame extends Application {
    AnimationTimer timer;
@@ -90,7 +92,37 @@ public class FHBGame extends Application {
         inner.get(i).setOnMouseExited(e -> recs.get(mrbreincarnate).setFill(Color.web("F7F7F7")));
      } //4dd2ff
   } //checkMouseHover
-  
+
+ /**
+  * creates a button that lets you build things
+  */
+  public void buttonStuff() {
+     Button button = new Button("Build!");
+     button.setOnAction(e -> buildPhase());
+     button.setTranslateX(740);
+     button.setTranslateY(60);
+  }//buttonStuff
+
+ /**
+ * run when in build phase. 
+ */
+  public void buildPhase() {
+//     boolean build = true;
+//     while (build) {
+//     	for (Rectangle r: inner) {
+//           r.setOnMouseClicked(e->
+//	       if (build) {setInnerBuilding(); build=false;});
+//	}//for
+//     }//while
+    System.out.println("build phase!");
+  }//buildPhase
+
+//  public void setInnerBuilding(boolean built){
+//     if (build) {
+//        r.setFill(Color.web("ff3434");
+//     } else {money += 10;}
+//  }//setInnerBuildings
+
  /**
   * sets up the nodes and adds them to the group
   */
@@ -134,6 +166,7 @@ public class FHBGame extends Application {
 	        }//for
 	   }//for
            checkMouseHover();
+	   buttonStuff();
    } //setUp
 
  /**
