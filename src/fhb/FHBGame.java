@@ -200,7 +200,7 @@ public class FHBGame extends Application {
       }; //AnimationTimer
       timer.start();
       Scene scene = new Scene(group, 880, 640, Color.BLACK);
-      fhbStage.setTitle("Farm. Hack. Build. || Wonder Fieri || Animal Hell || Kick the Dog");
+      fhbStage.setTitle("Farm. Hack. Build.");
       fhbStage.setScene(scene);
       fhbStage.sizeToScene();
       fhbStage.show();
