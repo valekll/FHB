@@ -77,12 +77,13 @@ public class FHBGame extends Application {
 	  } //for
   } //update()
 
-/**
+ /**
   * rectangle highlighting
   */
   public void checkMouseHover() {
-     for (Rectangle r: recs) {
-        r.setOnMouseMoved(e->r.setFill(Color.web("4dd2ff")));
+     for(Rectangle r: recs) {
+        r.setOnMouseMoved(e-> r.setFill(Color.web("4DD2FF")));
+        r.setOnMouseExited(e -> r.setFill(Color.web("F7F7F7")));
      }//4dd2ff
   }//mousehover
 
