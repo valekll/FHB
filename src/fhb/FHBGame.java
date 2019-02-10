@@ -74,17 +74,17 @@ public class FHBGame extends Application {
 			  images.set(i, sprites.get(i).cycle());
 		  } //else
 		  group.getChildren().add(images.get(i));
-
-		  //checkMouseHover();
 	  } //for
   } //update()
 
-  /*public void checkMouseHover() {
+/**
+  * rectangle highlighting
+  */
+  public void checkMouseHover() {
      for (Rectangle r: recs) {
-       .
+        r.setOnMouseMoved(e->r.setFill(Color.web("4dd2ff")));
      }//4dd2ff
-  }//mousehover*/
-
+  }//mousehover
 
  /**
   * sets up the nodes and adds them to the group
@@ -128,6 +128,7 @@ public class FHBGame extends Application {
 	        	group.getChildren().add(inner.get((i * 8) + j));
 	        }//for
 	   }//for
+           checkMouseHover();
    } //setUp
 
  /**
