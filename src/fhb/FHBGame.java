@@ -69,6 +69,7 @@ public class FHBGame extends Application {
 		  } //if
 		  if(ms) {
 			  images.set(i, ((MobileSprite)sprites.get(i)).cycle(((MobileSprite)sprites.get(i)).getDir()));
+			  images.get(i).setOnMouseClicked(e -> System.out.println("bork"));
 		  } //if
 		  else {
 			  images.set(i, sprites.get(i).cycle());
@@ -81,12 +82,15 @@ public class FHBGame extends Application {
   * rectangle highlighting
   */
   public void checkMouseHover() {
-     for(Rectangle r: recs) {
-        r.setOnMouseMoved(e-> r.setFill(Color.web("4DD2FF")));
-        r.setOnMouseExited(e -> r.setFill(Color.web("F7F7F7")));
-     }//4dd2ff
-  }//mousehover
-
+     for(int i = 0; i < recs.size(); i++) {
+    	final int mrbreincarnate = i;
+        recs.get(i).setOnMouseMoved(e-> recs.get(mrbreincarnate).setFill(Color.web("4DD2FF")));
+        recs.get(i).setOnMouseExited(e -> recs.get(mrbreincarnate).setFill(Color.web("F7F7F7")));
+        inner.get(i).setOnMouseMoved(e-> recs.get(mrbreincarnate).setFill(Color.web("4DD2FF")));
+        inner.get(i).setOnMouseExited(e -> recs.get(mrbreincarnate).setFill(Color.web("F7F7F7")));
+     } //4dd2ff
+  } //checkMouseHover
+  
  /**
   * sets up the nodes and adds them to the group
   */
@@ -196,7 +200,7 @@ public class FHBGame extends Application {
       }; //AnimationTimer
       timer.start();
       Scene scene = new Scene(group, 880, 640, Color.BLACK);
-      fhbStage.setTitle("Farm. Hack. Build. || Wonder Fieri");
+      fhbStage.setTitle("Farm. Hack. Build. || Wonder Fieri || Animal Hell || Kick the Dog");
       fhbStage.setScene(scene);
       fhbStage.sizeToScene();
       fhbStage.show();
