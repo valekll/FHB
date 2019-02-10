@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Sprite {
+	private int pps; //pace per second
 	private double xax; //x and y axis
 	private double yax;
 	private Image[] nml; //normal
@@ -17,6 +18,7 @@ public class Sprite {
 	private int dthct;
 	
 	public Sprite(double x, double y, Image[] normal, Image[] build, Image[] death) {
+		pps = 0;
 		xax = x;
 		yax = y;
 		nml = normal;
@@ -28,6 +30,17 @@ public class Sprite {
 		bdv = imageToImageViewArr(bd);
 		dth = death;
 		dthv = imageToImageViewArr(dth);
+	} //Sprite()
+	
+	public Sprite(double x, double y, ImageView[] normal, ImageView[] build, ImageView[] death) {
+		xax = x;
+		yax = y;
+		if(normal.length == 0 || build.length == 0 || death.length == 0) {
+			System.out.println("Constructor error");
+		}
+		nmlv = normal;
+		bdv = build;
+		dthv = death;
 	} //Sprite()
 	
 	/**
@@ -49,9 +62,14 @@ public class Sprite {
 	 * @return the next ImageView
 	 */
 	public ImageView cycle() {
-		nmlct++;
-		if(nmlct >= nmlv.length) {
-			nmlct = 0;
+		pps++;
+		if(pps == 10) {
+			pps = 0;
+			nmlct++;
+			if(nmlct >= nmlv.length) {
+				nmlct = 0;
+			} //if
+			//System.out.println(nmlv[nmlct]);
 		} //if
 		ImageView img = nmlv[nmlct];
 		if(img == null) {
