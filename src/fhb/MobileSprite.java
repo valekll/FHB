@@ -5,36 +5,45 @@ import javafx.scene.image.ImageView;
 
 public class MobileSprite extends Sprite {
 	protected int dir; //direction
+	protected int nmlStart;
+	protected int nmlEnd;
 	
 	public MobileSprite(double x, double y, Image[] normal, Image[] build, Image[] death) {
 		super(x, y, normal, build, death);
 		dir = 0;
+		nmlStart = 0;
 		nmlFrames = nmlFrames / 4;
+		nmlEnd = nmlStart + nmlFrames;
 	} //MobileSprite()
 
 	public MobileSprite(double x, double y, ImageView[] normal, ImageView[] build, ImageView[] death) {
 		super(x, y, normal, build, death);
 		dir = 0;
+		nmlStart = 0;
 		nmlFrames = nmlFrames / 4;
+		nmlEnd = nmlStart + nmlFrames;
 	} //MobileSprite()
 	
 	/**
 	 * Cycles to next ImageView sprite
 	 * @return the next ImageView
 	 */
-	@Override
-	public ImageView cycle() {
+	public ImageView cycle(int d) {
 		pps++;
-		if(pps == 10) {
-			pps = 0;
-			nmlct++;
-			move();
-			if((nmlct + 1) % (nmlFrames) == 0) {
+		if(pps == 10) { //once every 10 frames
+			pps = 0; //reset pps
+			boolean check = !chDir(d);
+			if(check) { //check for changes in direction
+				nmlct++;
+				if(nmlct >= nmlEnd) {
+					nmlct = nmlStart;
+				} //if
+			} //if
+			move(check);
+			/*if((nmlct + 1) % (nmlFrames) == 0) {
 				chDir();
 			} //if
-			if(nmlct >= nmlFrames * 4) {
-				nmlct = 0;
-			} //if
+			 */
 			//System.out.println(nmlv[nmlct]);
 		} //if
 		ImageView img = nmlv[nmlct];
@@ -51,24 +60,27 @@ public class MobileSprite extends Sprite {
 	/**
 	 * Move 10 pixels in a set direction
 	 */
-	private void move() {
-		if(dir == 0) { //down
-			yax += 10.0;
+	private boolean move(boolean mv) {
+		if(mv) {
+			if(dir == 0) { //down
+				yax += 10.0;
+			} //if
+			else if(dir == 1) { //left
+				xax -= 10.0;
+			} //else if
+			else if(dir == 2) { //right
+				xax += 10.0;
+			} //else if
+			else if(dir == 3) { //up
+				yax -= 10.0;
+			} //else if
 		} //if
-		else if(dir == 1) { //left
-			xax -= 10.0;
-		} //else if
-		else if(dir == 2) { //right
-			xax += 10.0;
-		} //else if
-		else if(dir == 3) { //up
-			yax -= 10.0;
-		} //else if
+		return mv;
 	} //move()
 	
-	 /**
-	  * Changes direction of movement
-	  */
+	/**
+	 * Changes direction of movement
+	 */
 	private void chDir() {
 		if(dir == 3) {
 			dir = 0;
@@ -76,5 +88,30 @@ public class MobileSprite extends Sprite {
 		else {
 			dir++;
 		} //else
+	} //chDir()
+	
+	/**
+	 * Changes direction of movement
+	 */
+	public boolean chDir(int d) {
+		if(dir <=3 && dir >= 0 && dir != d) {
+			dir = d;
+			if(dir == 0) { //down
+				nmlStart = 0;
+			} //if
+			else if(dir == 1) { //left
+				nmlStart = nmlFrames;
+			} //else if
+			else if(dir == 2) { //right
+				nmlStart = nmlFrames * 2;
+			} //else if
+			else if(dir == 3) { //up
+				nmlStart = nmlFrames * 3;
+			} //else if
+			nmlEnd = nmlStart + nmlFrames;
+			nmlct = nmlStart;
+			return true;
+		} //if
+		return false;
 	} //chDir()
 } //MobileSprite
