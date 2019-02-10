@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Sprite {
+	private int dir; //direction
 	private int pps; //pace per second
 	private double xax; //x and y axis
 	private double yax;
@@ -18,6 +19,7 @@ public class Sprite {
 	private int dthct;
 	
 	public Sprite(double x, double y, Image[] normal, Image[] build, Image[] death) {
+		dir = 0;
 		pps = 0;
 		xax = x;
 		yax = y;
@@ -66,12 +68,18 @@ public class Sprite {
 		if(pps == 10) {
 			pps = 0;
 			nmlct++;
+			move();
+			if((nmlct + 1) % 3 == 0) {
+				chDir();
+			} //if
 			if(nmlct >= nmlv.length) {
 				nmlct = 0;
 			} //if
 			//System.out.println(nmlv[nmlct]);
 		} //if
 		ImageView img = nmlv[nmlct];
+		img.setX(xax);
+		img.setY(yax);
 		if(img == null) {
 			System.out.println("returning nothing");
 			System.out.println("Count: " + nmlct + " Frames: " + nmlv.length);
@@ -79,6 +87,36 @@ public class Sprite {
 		}
 		return img;
 	} //cycle()
+	
+	/**
+	 * Move 10 pixels in a set direction
+	 */
+	private void move() {
+		if(dir == 0) { //down
+			yax += 10.0;
+		} //if
+		else if(dir == 1) { //left
+			xax -= 10.0;
+		} //else if
+		else if(dir == 2) { //right
+			xax += 10.0;
+		} //else if
+		else if(dir == 3) { //up
+			yax -= 10.0;
+		} //else if
+	} //move()
+	
+	 /**
+	  * Changes direction of movement
+	  */
+	private void chDir() {
+		if(dir == 3) {
+			dir = 0;
+		} //if
+		else {
+			dir++;
+		} //else
+	} //chDir()
 	
 	/**
 	 * @return number of frames
