@@ -20,6 +20,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
+import java.util.Random;
 
 
 public class FHBGame extends Application {
@@ -34,6 +35,9 @@ public class FHBGame extends Application {
    ArrayList<Rectangle> recs;
    ArrayList<Rectangle> inner;
    int pps;
+   ImageView[] imgv;
+   double mouseX;
+   double mouseY;
    
  /**
   * default Constructor
@@ -90,17 +94,45 @@ public class FHBGame extends Application {
         recs.get(i).setOnMouseExited(e -> recs.get(mrbreincarnate).setFill(Color.web("F7F7F7")));
         inner.get(i).setOnMouseMoved(e-> recs.get(mrbreincarnate).setFill(Color.web("4DD2FF")));
         inner.get(i).setOnMouseExited(e -> recs.get(mrbreincarnate).setFill(Color.web("F7F7F7")));
+        recs.get(i).setOnMouseClicked(e-> {
+        	spawnPupper(); 
+        	mouseX = e.getX();
+        	mouseY = e.getY();
+        });
+        inner.get(i).setOnMouseClicked(e-> {
+        	spawnPupper();
+        	mouseX = e.getX();
+        	mouseY = e.getY();
+        });
      } //4dd2ff
   } //checkMouseHover
 
+  public void spawnPupper() {
+	  double randX = (int)(Math.random() * 640.0);
+	  double randY = (int)(Math.random() * 640.0);
+	  Image img = new Image("https://i.imgur.com/JgPQLX6.png"); //http://i.imgur.com/HnW7KqH.png original
+	   ImageView[] temp = new ImageView[12];
+	   for(int i = 0; i < 4; i++) {
+		   for(int j = 0; j < 3; j++) {
+			   temp[i * 3 + j] = new ImageView(img);
+			   temp[i * 3 + j].setViewport(new Rectangle2D(j * 48, i * 46, 47, 46));
+		   } //for
+	   } //for 
+	  Sprite pupper = new Sprite(mouseX, mouseY, temp, temp, temp);
+	  sprites.add(pupper);
+	  images.add(sprites.get(sprites.indexOf(pupper)).cycle());
+	  group.getChildren().add(images.get(images.size() - 1));
+  } //spawnPupper()
+  
  /**
   * creates a button that lets you build things
   */
   public void buttonStuff() {
-     Button button = new Button("Build!");
+     Button button = new Button("  Build!  ");
      button.setOnAction(e -> buildPhase());
-     button.setTranslateX(740);
-     button.setTranslateY(60);
+     button.setLayoutX(740);
+     button.setLayoutY(60);
+     group.getChildren().add(button);
   }//buttonStuff
 
  /**
@@ -132,7 +164,7 @@ public class FHBGame extends Application {
 	   //img[0] = new Image("https://m.media-amazon.com/images/M/MV5BMTQ5NTUzNDE5OV5BMl5BanBnXkFtZTgwMjAwOTE1MDE@._V1_.jpg", 160, 160, false, false);
 	   //img[1] = new Image("https://pbs.twimg.com/media/DfzhghPX0AA4vHO.jpg", 160, 160, false, false);
 	   Image img = new Image("https://i.imgur.com/JgPQLX6.png"); //http://i.imgur.com/HnW7KqH.png original
-	   ImageView[] imgv = new ImageView[12];
+	   imgv = new ImageView[12];
 	   for(int i = 0; i < 4; i++) {
 		   for(int j = 0; j < 3; j++) {
 			   imgv[i * 3 + j] = new ImageView(img);
@@ -165,7 +197,7 @@ public class FHBGame extends Application {
 	        	group.getChildren().add(inner.get((i * 8) + j));
 	        }//for
 	   }//for
-           checkMouseHover();
+       checkMouseHover();
 	   buttonStuff();
    } //setUp
 
