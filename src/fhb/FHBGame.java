@@ -31,6 +31,7 @@ public class FHBGame extends Application {
    ArrayList<ImageView> images;
    ArrayList<Rectangle> recs;
    ArrayList<Rectangle> inner;
+   int pps;
    
  /**
   * default Constructor
@@ -45,32 +46,51 @@ public class FHBGame extends Application {
   } //getSprites()
 
   public void update() {
-    /*this.getSprites().forEach(s-> {
+	  pps++;
+	  boolean udog = false;
+	  if(pps == 180) {
+		  pps = 0;
+		  udog = true;
+	  } //if
+	  /*this.getSprites().forEach(s-> {
          
-    });*/
+    	});*/
+	
+	  for (int i = 0; i < images.size(); i++) {
+		  boolean ms = false;
+		  if(sprites.get(i) instanceof MobileSprite) {
+			  ms = true;
+		  } //if
+		  if(udog && ms) {
+			  ((MobileSprite)sprites.get(i)).chDir(MobileSprite.rdlu(((MobileSprite)sprites.get(i)).getDir()));
+		  } //if
+		  if (images.get(i) != null) {
+			  group.getChildren().remove(images.get(i));
+		  } //if
+		  if(ms) {
+			  images.set(i, ((MobileSprite)sprites.get(i)).cycle(((MobileSprite)sprites.get(i)).getDir()));
+		  } //if
+		  else {
+			  images.set(i, sprites.get(i).cycle());
+		  } //else
+		  group.getChildren().add(images.get(i));
 
-    for (int i = 0; i < images.size(); i++) {
-    	if (images.get(i) != null) {
-    		group.getChildren().remove(images.get(i));
-    	} //if
-    	images.set(i, sprites.get(i).cycle());
-    	group.getChildren().add(images.get(i));
-
-	checkMouseHover();
-    } //for
+		  //checkMouseHover();
+	  } //for
   } //update()
 
-  public void checkMouseHover() {
+  /*public void checkMouseHover() {
      for (Rectangle r: recs) {
        .
      }//4dd2ff
-  }//mousehover
+  }//mousehover*/
 
 
  /**
   * sets up the nodes and adds them to the group
   */
    public void setUp() {
+	   pps = 0;
 	   //Image[] img = new Image[3]; 
 	   //img[0] = new Image("https://m.media-amazon.com/images/M/MV5BMTQ5NTUzNDE5OV5BMl5BanBnXkFtZTgwMjAwOTE1MDE@._V1_.jpg", 160, 160, false, false);
 	   //img[1] = new Image("https://pbs.twimg.com/media/DfzhghPX0AA4vHO.jpg", 160, 160, false, false);
@@ -87,7 +107,7 @@ public class FHBGame extends Application {
 		   imgv[i] = new ImageView(img);
 		   imgv[i].setViewport(new Rectangle2D(i * 48, 0, 48, 46));
 	   } //for */
-	   x = new MobileSprite(135, 100, imgv, imgv, imgv);
+	   x = new MobileSprite(270, 250, imgv, imgv, imgv);
 	   sprites = new ArrayList<Sprite>();
 	   sprites.add(x);
 	   images = new ArrayList<ImageView>();

@@ -79,6 +79,27 @@ public class MobileSprite extends Sprite {
 	} //move()
 	
 	/**
+	 * Gives directions for a clockwise circuit
+	 * @param d current direction
+	 * @return new direction
+	 */
+	public static int rdlu(int d) {
+		if(d == 0) { //down
+			d = 1;
+		} //if
+		else if(d == 1) { //left
+			d = 3;
+		} //else if
+		else if(d == 2) { //right
+			d = 0;
+		} //else if
+		else if(d == 3) { //up
+			d = 2;
+		} //else if
+		return d;
+	} //rdlu
+	
+	/**
 	 * Changes direction of movement
 	 */
 	private void chDir() {
@@ -114,4 +135,8 @@ public class MobileSprite extends Sprite {
 		} //if
 		return false;
 	} //chDir()
+	
+	public int getDir() {
+		return dir;
+	} //getDir()
 } //MobileSprite
