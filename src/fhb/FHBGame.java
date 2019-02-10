@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.shape.Rectangle;
 import javafx.geometry.Rectangle2D;
-
+import javafx.scene.input.MouseEvent;
 
 public class FHBGame extends Application {
    AnimationTimer timer;
@@ -55,8 +55,16 @@ public class FHBGame extends Application {
     	} //if
     	images.set(i, sprites.get(i).cycle());
     	group.getChildren().add(images.get(i));
+
+	checkMouseHover();
     } //for
   } //update()
+
+  public void checkMouseHover() {
+     for (Rectangle r: recs) {
+       .
+     }//4dd2ff
+  }//mousehover
 
 
  /**
