@@ -49,7 +49,7 @@ public class FHBGame extends Application {
          
     });*/
 
-    for (int i = 0; i< images.size(); i++) {
+    for (int i = 0; i < images.size(); i++) {
     	if (images.get(i) != null) {
     		group.getChildren().remove(images.get(i));
     	} //if
@@ -79,7 +79,7 @@ public class FHBGame extends Application {
 		   imgv[i] = new ImageView(img);
 		   imgv[i].setViewport(new Rectangle2D(i * 48, 0, 48, 46));
 	   } //for */
-	   x = new Sprite(100, 100, imgv, imgv, imgv);
+	   x = new MobileSprite(135, 100, imgv, imgv, imgv);
 	   sprites = new ArrayList<Sprite>();
 	   sprites.add(x);
 	   images = new ArrayList<ImageView>();

@@ -4,22 +4,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Sprite {
-	private int dir; //direction
-	private int pps; //pace per second
-	private double xax; //x and y axis
-	private double yax;
-	private Image[] nml; //normal
-	private ImageView[] nmlv;
-	private int nmlct;
-	private Image[] bd; //build
-	private ImageView[] bdv;
-	private int bdct;
-	private Image[] dth; //death
-	private ImageView[] dthv;
-	private int dthct;
+	protected int pps; //pace per second
+	protected double xax; //x and y axis
+	protected double yax;
+	protected Image[] nml; //normal
+	protected ImageView[] nmlv;
+	protected int nmlct;
+	protected int nmlFrames;
+	protected Image[] bd; //build
+	protected ImageView[] bdv;
+	protected int bdct;
+	protected Image[] dth; //death
+	protected ImageView[] dthv;
+	protected int dthct;
 	
 	public Sprite(double x, double y, Image[] normal, Image[] build, Image[] death) {
-		dir = 0;
 		pps = 0;
 		xax = x;
 		yax = y;
@@ -32,6 +31,7 @@ public class Sprite {
 		bdv = imageToImageViewArr(bd);
 		dth = death;
 		dthv = imageToImageViewArr(dth);
+		nmlFrames = nmlv.length;
 	} //Sprite()
 	
 	public Sprite(double x, double y, ImageView[] normal, ImageView[] build, ImageView[] death) {
@@ -43,6 +43,7 @@ public class Sprite {
 		nmlv = normal;
 		bdv = build;
 		dthv = death;
+		nmlFrames = nmlv.length;
 	} //Sprite()
 	
 	/**
@@ -68,11 +69,7 @@ public class Sprite {
 		if(pps == 10) {
 			pps = 0;
 			nmlct++;
-			move();
-			if((nmlct + 1) % 3 == 0) {
-				chDir();
-			} //if
-			if(nmlct >= nmlv.length) {
+			if(nmlct >= nmlFrames) {
 				nmlct = 0;
 			} //if
 			//System.out.println(nmlv[nmlct]);
@@ -87,36 +84,6 @@ public class Sprite {
 		}
 		return img;
 	} //cycle()
-	
-	/**
-	 * Move 10 pixels in a set direction
-	 */
-	private void move() {
-		if(dir == 0) { //down
-			yax += 10.0;
-		} //if
-		else if(dir == 1) { //left
-			xax -= 10.0;
-		} //else if
-		else if(dir == 2) { //right
-			xax += 10.0;
-		} //else if
-		else if(dir == 3) { //up
-			yax -= 10.0;
-		} //else if
-	} //move()
-	
-	 /**
-	  * Changes direction of movement
-	  */
-	private void chDir() {
-		if(dir == 3) {
-			dir = 0;
-		} //if
-		else {
-			dir++;
-		} //else
-	} //chDir()
 	
 	/**
 	 * @return number of frames
