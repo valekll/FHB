@@ -95,14 +95,16 @@ public class FHBGame extends Application {
         inner.get(i).setOnMouseMoved(e-> recs.get(mrbreincarnate).setFill(Color.web("4DD2FF")));
         inner.get(i).setOnMouseExited(e -> recs.get(mrbreincarnate).setFill(Color.web("F7F7F7")));
         recs.get(i).setOnMouseClicked(e-> {
-        	spawnPupper(); 
+
         	mouseX = e.getX();
         	mouseY = e.getY();
+        	spawnPupper(); 
         });
         inner.get(i).setOnMouseClicked(e-> {
-        	spawnPupper();
+
         	mouseX = e.getX();
         	mouseY = e.getY();
+        	spawnPupper();
         });
      } //4dd2ff
   } //checkMouseHover
@@ -118,7 +120,7 @@ public class FHBGame extends Application {
 			   temp[i * 3 + j].setViewport(new Rectangle2D(j * 48, i * 46, 47, 46));
 		   } //for
 	   } //for 
-	  Sprite pupper = new Sprite(mouseX, mouseY, temp, temp, temp);
+	  Sprite pupper = new Sprite(mouseX - 20, mouseY - 20, temp, temp, temp);
 	  sprites.add(pupper);
 	  images.add(sprites.get(sprites.indexOf(pupper)).cycle());
 	  group.getChildren().add(images.get(images.size() - 1));
